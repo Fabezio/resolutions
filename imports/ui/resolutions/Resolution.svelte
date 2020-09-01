@@ -3,7 +3,7 @@
     import {Resolutions} from '../../api/resolutions'
     export let resolution
     export let i
-    let updateRes = ""
+    let updateRes = resolution.title
 
     let display = "btn"
 
@@ -14,6 +14,7 @@
         // dispatch('delete', i)
     }
     function handleUpdate(evt) {
+        changeDisplay()
         Resolutions.update({
             _id: resolution._id
         },{
@@ -36,7 +37,7 @@
         {:else}
             <form on:submit|preventDefault={handleUpdate}>
                 <input type="text" bind:value={updateRes} placeholder={updateRes} >
-                <h6 class="badge badge-pill badge-primary" on:click={changeDisplay} type="submit">Update</h6>
+                <h6 class="badge badge-pill badge-primary" on:click={handleUpdate} type="submit">Update</h6>
                 <h6 class="badge badge-pill badge-secondary" on:click={changeDisplay} >cancel</h6>
             </form>
         {/if}
